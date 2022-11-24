@@ -7,8 +7,10 @@ import * as $0 from "./routes/[name].tsx";
 import * as $1 from "./routes/api/joke.ts";
 import * as $2 from "./routes/index.tsx";
 import * as $3 from "./routes/wilayah/index.tsx";
-import * as $4 from "./routes/wilayah/provinsi/[nama_provinsi].tsx";
+import * as $4 from "./routes/wilayah/provinsi/[nama_provinsi]%20copy.tsx";
+import * as $5 from "./routes/wilayah/provinsi/[slug_provinsi].tsx";
 import * as $$0 from "./islands/Counter.tsx";
+import * as $$1 from "./islands/ProvinsiDetail.tsx";
 
 const manifest = {
   routes: {
@@ -16,10 +18,12 @@ const manifest = {
     "./routes/api/joke.ts": $1,
     "./routes/index.tsx": $2,
     "./routes/wilayah/index.tsx": $3,
-    "./routes/wilayah/provinsi/[nama_provinsi].tsx": $4,
+    "./routes/wilayah/provinsi/[nama_provinsi]%20copy.tsx": $4,
+    "./routes/wilayah/provinsi/[slug_provinsi].tsx": $5,
   },
   islands: {
     "./islands/Counter.tsx": $$0,
+    "./islands/ProvinsiDetail.tsx": $$1,
   },
   baseUrl: import.meta.url,
   config,
