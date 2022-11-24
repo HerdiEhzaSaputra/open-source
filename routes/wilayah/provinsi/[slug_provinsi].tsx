@@ -1,11 +1,12 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
-import ProductDetails from "@/islands/ProvinsiDetail.tsx";
-import { graphql } from "@/utils/shopify.ts";
+import ProvinceDetail from "@/islands/ProvinceDetail.tsx";
+import { graphql } from "@/utils/gql.ts";
 import { Provinsi } from "@/utils/types.ts";
 
-const q = `query GetProvinsi($slug_provinsi: String!) {
+const q = `query GetProvince($slug_provinsi: String!) {
     provinsi(where: {slug_provinsi: {_ilike: $slug_provinsi}}) {
         kode_wilayah
+        daerah_otonomi
         nama_provinsi
         slug_provinsi
         singkatan_iso
@@ -39,7 +40,7 @@ export const handler: Handlers<Query> = {
         const data = await graphql<Query>(q, { slug_provinsi: ctx.params.slug_provinsi });
         // console.log(data)
         if (!data.provinsi) {
-            return new Response("Product not found", { status: 404 });
+            return new Response("Province not found", { status: 404 });
         }
         return ctx.render(data);
     },
@@ -76,7 +77,7 @@ export default function ProvinsiPage(ctx: PageProps<Query>) {
                     Kembali ke List Provinsi
                 </a>
             </div>
-            <ProductDetails provinsi={data.provinsi!} />
+            <ProvinceDetail provinsi={data.provinsi!} />
         </>
     );
 }
