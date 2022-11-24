@@ -10,36 +10,18 @@ export interface Image {
     altText: string;
 }
 
-export interface List<T> {
-    nodes: T[];
+export interface DaerahOtonomi {
+map(arg0: (otonomiL: any) => import("https://esm.sh/v99/preact@10.11.0/src/jsx").JSXInternal.Element);
+    
+    
+    id: string;
+    name: string;
 }
-
-export interface ProductPriceRange {
-    minVariantPrice: Money;
-    maxVariantPrice: Money;
-}
-
 export interface Provinsi {
     map(arg0: (data: any) => import("https://esm.sh/v95/preact@10.11.0/src/jsx").JSXInternal.Element): import("https://esm.sh/v95/preact@10.11.0/src/index").ComponentChildren;
-    // featuredImage: Image | null;
-    // images?: List<Image>;
-    // variants: List<ProductVariant>;
-    // priceRange: ProductPriceRange;
-    // productType: string;
-    // id: string;
-    // handle: string;
-    // title: string;
-    // description: string;
-    // descriptionHtml: string;
-    // productType: string;
-    // featuredImage: Image | null;
-    // images?: List<Image>;
-    // variants: List<ProductVariant>;
-    // priceRange: ProductPriceRange;
 
-    images?: List<Image>;
-    variants: List<ProductVariant>;
-
+    id: string;
+    daerah_otonomi: string;
     nama_provinsi: string;
     slug_provinsi: string;
     singkatan_iso: string;
@@ -62,11 +44,4 @@ export interface Provinsi {
     pdrb_perkapita: Money;
     pdrb_total: Money;
     populasi: number;
-}
-
-export interface ProductVariant {
-    id: string;
-    priceV2: Money;
-    title: string;
-    availableForSale: boolean;
 }
