@@ -5,7 +5,7 @@ export default function ProvinceList({ provinsi, otonomi }: { provinsi: Provinsi
         <div className="container">
             {otonomi && otonomi.map((otonomiData) => (
                 <div key={otonomiData.id}>
-                    <div className="sticky top-0 bg-white p-3 rounded-xl shadow-xl flex items-center justify-between mt-4">
+                    <div className="sticky top-[4.8rem] bg-white p-3 rounded-xl shadow-xl flex items-center justify-between mt-4">
                         <div className="flex space-x-6 items-center">
                             <div className="shadow rounded-lg h-24 w-24">
                                 <img 

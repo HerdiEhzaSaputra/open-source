@@ -3,6 +3,7 @@ import ProvinceDetail from "@/islands/ProvinceDetail.tsx";
 import { graphql } from "@/utils/gql.ts";
 import { DasarHukum, Provinsi } from "@/utils/types.ts";
 import HeadElement from "@/components/HeadElement.tsx";
+import Header from "../../../components/Header.tsx";
 
 const q = `query GetProvince($id: uuid, $dh_id: uuid) {
     provinsi(where: {id: {_eq: $id}}) {
@@ -70,8 +71,11 @@ export default function ProvinsiPage(ctx: PageProps<Query>) {
                 title={data.provinsi.nama_provinsi}
                 url={url}
             />
+
+            <Header />
+
             <div
-                class="w-11/12 mt-16 max-w-5xl mx-auto flex items-center justify-between relative"
+                class="relative pt-40 pb-20 lg:pt-24 w-11/12 max-w-5xl mx-auto flex items-center justify-between"
             >
                 <a
                     href="/wilayah"

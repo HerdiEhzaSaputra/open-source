@@ -4,9 +4,9 @@ import IconPaperclip from "https://deno.land/x/tabler_icons_tsx@0.0.1/tsx/paperc
 export default function ProvinceDetail({ provinsi, dasar_hukum }: { provinsi: Provinsi, dasar_hukum: DasarHukum }) {
     const format = (number: { toString: () => string; }) => (number && number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'));
     
-    if (!provinsi.id) {
-        return <div>Provinsi Tidak Ditemukan</div>;
-    }
+    // if (!provinsi.id) {
+    //     return <div>Provinsi Tidak Ditemukan</div>;
+    // }
 
 
     return (
