@@ -48,7 +48,7 @@ interface Query {
 export const handler: Handlers<Query> = {
     async GET(_req, ctx) {
         const data = await graphql<Query>(q, { id: ctx.params.id });
-        console.log(data)
+        // console.log(data)
         if (!data.provinsi) {
             return new Response("Province not found", { status: 404 });
         }
@@ -96,7 +96,13 @@ export default function ProvinsiPage(ctx: PageProps<Query>) {
                     Kembali ke List Provinsi
                 </a>
             </div>
-            <ProvinceDetail provinsi={data.provinsi!} dasar_hukum={data.dasar_hukum!} />
+
+            {/* {!data.provinsi
+                ? */}
+                    <ProvinceDetail provinsi={data.provinsi!} dasar_hukum={data.dasar_hukum!} />
+                {/* : */}
+                    {/* <div>Provinsi Tidak Ditemukan</div> */}
+            {/* } */}
         </>
     );
 }
