@@ -1,10 +1,12 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import ProvinceDetail from "@/islands/ProvinceDetail.tsx";
 import { graphql } from "@/utils/gql.ts";
-import { Provinsi } from "@/utils/types.ts";
+import { DasarHukum, Provinsi } from "@/utils/types.ts";
+import HeadElement from "@/components/HeadElement.tsx";
 
-const q = `query GetProvince($slug_provinsi: String!) {
-    provinsi(where: {slug_provinsi: {_ilike: $slug_provinsi}}) {
+const q = `query GetProvince($id: uuid, $dh_id: uuid) {
+    provinsi(where: {id: {_eq: $id}}) {
+        id
         kode_wilayah
         daerah_otonomi
         nama_provinsi
@@ -29,16 +31,23 @@ const q = `query GetProvince($slug_provinsi: String!) {
         pdrb_perkapita
         pdrb_total
     }
+    dasar_hukum(where: {provinsi_id: {_eq: $id}}) {
+        dh_id
+        provinsi_id
+        file_id
+        file_name
+    }
 }`;
 
 interface Query {
     provinsi: Provinsi | null;
+    dasar_hukum: DasarHukum | null;
 }
 
 export const handler: Handlers<Query> = {
     async GET(_req, ctx) {
-        const data = await graphql<Query>(q, { slug_provinsi: ctx.params.slug_provinsi });
-        // console.log(data)
+        const data = await graphql<Query>(q, { id: ctx.params.id });
+        console.log(data)
         if (!data.provinsi) {
             return new Response("Province not found", { status: 404 });
         }
@@ -47,7 +56,7 @@ export const handler: Handlers<Query> = {
 };
 
 export default function ProvinsiPage(ctx: PageProps<Query>) {
-    const { data } = ctx;
+    const { data, url } = ctx;
 
     if (!data.provinsi) {
         return <div>Provinsi Tidak Ditemukan</div>;
@@ -55,6 +64,12 @@ export default function ProvinsiPage(ctx: PageProps<Query>) {
 
     return (
         <>
+            <HeadElement
+                description={data.provinsi.slug_provinsi}
+                // image={data.provinsi.logo_provinsi?.url}
+                title={data.provinsi.nama_provinsi}
+                url={url}
+            />
             <div
                 class="w-11/12 mt-16 max-w-5xl mx-auto flex items-center justify-between relative"
             >
@@ -77,7 +92,7 @@ export default function ProvinsiPage(ctx: PageProps<Query>) {
                     Kembali ke List Provinsi
                 </a>
             </div>
-            <ProvinceDetail provinsi={data.provinsi!} />
+            <ProvinceDetail provinsi={data.provinsi!} dasar_hukum={data.dasar_hukum!} />
         </>
     );
 }

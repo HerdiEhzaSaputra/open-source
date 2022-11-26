@@ -10,10 +10,16 @@ export interface Image {
     altText: string;
 }
 
+export interface DasarHukum {
+    map(arg0: (otonomiL: any) => import("https://esm.sh/v95/preact@10.11.0/src/jsx").JSXInternal.Element): import("https://esm.sh/v95/preact@10.11.0/src/index").ComponentChildren;
+    dh_id: string;
+    provinsi_id: string;
+    file_id: string;
+    file_name: string;
+}
+
 export interface DaerahOtonomi {
-map(arg0: (otonomiL: any) => import("https://esm.sh/v99/preact@10.11.0/src/jsx").JSXInternal.Element);
-    
-    
+    map(arg0: (otonomiL: any) => import("https://esm.sh/v95/preact@10.11.0/src/jsx").JSXInternal.Element): import("https://esm.sh/v95/preact@10.11.0/src/index").ComponentChildren;
     id: string;
     name: string;
 }

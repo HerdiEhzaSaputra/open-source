@@ -8,18 +8,22 @@ const q = `query ProvinceIndex{
     daerah_otonomi {
         id
         name
+        pulau
     }
     provinsi {
+        id
         daerah_otonomi
         nama_provinsi
         slug_provinsi
         logo_provinsi
+        ibu_kota
+        gubernur
     }
 }`;
 
 interface Query {
     provinsi: Provinsi | null;
-    otonomi: DaerahOtonomi | null;
+    daerah_otonomi: DaerahOtonomi | null;
 }
 
 export const handler: Handlers<Query> = {
@@ -29,9 +33,9 @@ export const handler: Handlers<Query> = {
         if (!data.provinsi) {
             return new Response("Province not found", { status: 404 });
         }
-        // if (!data.otonomi) {
-        //     return new Response("Daerah Otonomi not found", { status: 404 });
-        // }
+        if (!data.daerah_otonomi) {
+            return new Response("Daerah Otonomi not found", { status: 404 });
+        }
         return ctx.render(data);
     },
 };
@@ -45,7 +49,9 @@ export default function WilayahPage(ctx: PageProps<Query>) {
                 <title>Fresh App</title>
             </Head>
 
-            <ProvinceListPage provinsi={data.provinsi!} otonomi={data.otonomi!} />
+            <div className="flex items-center w-full justify-center">
+                <ProvinceListPage provinsi={data.provinsi!} otonomi={data.daerah_otonomi!} />
+            </div>
 
         </>
     );

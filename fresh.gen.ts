@@ -4,12 +4,12 @@
 
 import config from "./deno.json" assert { type: "json" };
 import * as $0 from "./routes/[name].tsx";
-import * as $1 from "./routes/api/joke.ts";
-import * as $2 from "./routes/index.tsx";
-import * as $3 from "./routes/wilayah/index.tsx";
-import * as $4 from "./routes/wilayah/index_manual.tsx";
-import * as $5 from "./routes/wilayah/provinsi/[nama_provinsi]%20copy.tsx";
-import * as $6 from "./routes/wilayah/provinsi/[slug_provinsi].tsx";
+import * as $1 from "./routes/_app.tsx";
+import * as $2 from "./routes/api/joke.ts";
+import * as $3 from "./routes/index.tsx";
+import * as $4 from "./routes/wilayah/index.tsx";
+import * as $5 from "./routes/wilayah/provinsi/[id].tsx";
+import * as $6 from "./routes/wilayah/provinsi/[nama_provinsi]%20copy.tsx";
 import * as $$0 from "./islands/Counter.tsx";
 import * as $$1 from "./islands/ProvinceDetail.tsx";
 import * as $$2 from "./islands/ProvinceList.tsx";
@@ -17,12 +17,12 @@ import * as $$2 from "./islands/ProvinceList.tsx";
 const manifest = {
   routes: {
     "./routes/[name].tsx": $0,
-    "./routes/api/joke.ts": $1,
-    "./routes/index.tsx": $2,
-    "./routes/wilayah/index.tsx": $3,
-    "./routes/wilayah/index_manual.tsx": $4,
-    "./routes/wilayah/provinsi/[nama_provinsi]%20copy.tsx": $5,
-    "./routes/wilayah/provinsi/[slug_provinsi].tsx": $6,
+    "./routes/_app.tsx": $1,
+    "./routes/api/joke.ts": $2,
+    "./routes/index.tsx": $3,
+    "./routes/wilayah/index.tsx": $4,
+    "./routes/wilayah/provinsi/[id].tsx": $5,
+    "./routes/wilayah/provinsi/[nama_provinsi]%20copy.tsx": $6,
   },
   islands: {
     "./islands/Counter.tsx": $$0,

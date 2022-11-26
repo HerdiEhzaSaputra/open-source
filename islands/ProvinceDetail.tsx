@@ -1,13 +1,18 @@
-import { Provinsi } from "@/utils/types.ts";
-import IconPaperclip from "https://deno.land/x/tabler_icons_tsx@0.0.1/tsx/paperclip.tsx"
+import { DasarHukum, Provinsi } from "@/utils/types.ts";
+import IconPaperclip from "https://deno.land/x/tabler_icons_tsx@0.0.1/tsx/paperclip.tsx";
 
-export default function ProvinceDetail({ provinsi }: { provinsi: Provinsi }) {
+export default function ProvinceDetail({ provinsi, dasar_hukum }: { provinsi: Provinsi, dasar_hukum: DasarHukum }) {
     const format = (number: { toString: () => string; }) => (number && number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'));
     
+    if (!provinsi.id) {
+        return <div>Provinsi Tidak Ditemukan</div>;
+    }
+
+
     return (
-        <div>
+        <>
             <div class="w-full items-center justify-between gap-4">
-                {provinsi.map((data) => (
+                {!provinsi.nama_provinsi && provinsi.map((data) => (
                     <div className="p-6">
                         <div className="overflow-hidden bg-white shadow sm:rounded-lg">
                             <div className="flex justify-between px-4 py-5 sm:px-6">
@@ -49,7 +54,20 @@ export default function ProvinceDetail({ provinsi }: { provinsi: Provinsi }) {
                                         <dt className="text-sm font-medium text-gray-500">Dasar Hukum Pembentukan</dt>
                                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
                                             <ul role="list" className="divide-y divide-gray-200 rounded-md border border-gray-200">
-                                                {data.dasar_hukum_pembentukan &&
+                                                {dasar_hukum.map((uud) => (
+                                                    <li key={uud.file_id} className="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
+                                                        <div className="flex w-0 flex-1 items-center">
+                                                            <IconPaperclip className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
+                                                            <span className="ml-2 w-0 flex-1 truncate">{decodeURI(uud.file_name)}</span>
+                                                        </div>
+                                                        <div className="ml-4 flex-shrink-0">
+                                                            <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                                                Download
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                ))}
+                                                {/* {data.dasar_hukum_pembentukan &&
                                                     <li className="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
                                                         <div className="flex w-0 flex-1 items-center">
                                                             <IconPaperclip className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
@@ -101,7 +119,7 @@ export default function ProvinceDetail({ provinsi }: { provinsi: Provinsi }) {
                                                             </a>
                                                         </div>
                                                     </li>
-                                                }
+                                                } */}
                                             </ul>
                                         </dd>
                                     </div>
@@ -156,6 +174,6 @@ export default function ProvinceDetail({ provinsi }: { provinsi: Provinsi }) {
                     </div>
                 ))}
             </div>
-        </div>
+        </>
     );
 }
