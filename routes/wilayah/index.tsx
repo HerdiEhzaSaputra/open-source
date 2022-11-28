@@ -4,7 +4,7 @@ import { DaerahOtonomi, Provinsi } from "@/utils/types.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import ProvinceListPage from "@/islands/ProvinceList.tsx";
 import Header from "../../components/Header.tsx";
-import Footer from "../../components/Footer";
+import Footer from "../../components/Footer.tsx";
 
 const q = `query ProvinceIndex{
     daerah_otonomi {
@@ -51,15 +51,15 @@ export default function WilayahPage(ctx: PageProps<Query>) {
                 <title>Fresh App</title>
             </Head>
 
-            <div className="">
-                <Header />
+            <Header active={"/wilayah"} />
 
+            <main>
                 <div className="relative pt-40 pb-20 lg:pt-24 flex items-center w-full justify-center">
                     <ProvinceListPage provinsi={data.provinsi!} otonomi={data.daerah_otonomi!} />
                 </div>
+            </main>
 
-                <Footer />
-            </div>
+            <Footer />
 
 
         </>
